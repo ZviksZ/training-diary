@@ -20,8 +20,10 @@ function* fetchSaga() {
 function* postWorkoutSaga(action) {
    try {
       const response = yield call(instance.post, `workouts`, {title: action.title});
-      console.log(response)
-     yield put(setWorkoutItem(response.data))
+      if (response.statusText === 'OK') {
+         yield put(setWorkoutItem(response.data))
+      }
+     
    } catch (e) {
       alert('Загрузка не удалась')
    }
