@@ -1,19 +1,18 @@
-import React, {useState, useEffect} from 'react';
-import axios                        from "axios";
+import React, {useState, useEffect}      from 'react';
+import {connect, Provider}               from "react-redux";
+import {addWorkoutItem, getWorkoutsList} from "./redux/workoutsReducer.js";
+import {store}                           from "./redux/redux-store.js";
+import {compose}                         from "redux";
 
-
-
-function App() {
+function App(props) {
    const [value, setValue] = useState('')
-   useEffect(() => {      
-
-      let response = axios.get(`http://localhost:8080/workouts`).then(response => response.data);
-
-      console.log(response, '111')
+   useEffect(() => {
+      props.getWorkoutsList()     
    }, []);
 
-   const onSubmit = () => {
-      axios.post(`http://localhost:8080/workouts`, {title: value})
+   const onSubmit = (e) => {
+      e.preventDefault()
+      props.addWorkoutItem(value)
    }
 
    return (
@@ -22,8 +21,34 @@ function App() {
             <input type="text" value={value} onChange={(e) => setValue(e.target.value)}/>
             <button type="submit">Send</button>
          </form>
+         
+         <ul>
+            {
+               props.workoutsList.map(item => {
+                   return <li>{item.title}</li>
+               })
+            }
+         </ul>
       </div>
    );
 }
 
-export default App;
+let mapStateToProps = (state) => {
+   return {
+      workoutsList: state.workouts.workoutsList,
+   }
+}
+
+const AppContainer = compose(
+   connect(mapStateToProps, {getWorkoutsList, addWorkoutItem}),
+)(App);
+
+const WorkoutApp = (props) => {
+   return (
+      <Provider store={store}>
+         <AppContainer/>
+      </Provider>
+   )
+}
+
+export default WorkoutApp;
