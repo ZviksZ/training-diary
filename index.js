@@ -14,7 +14,8 @@ app.use(workoutRoutes)
 async function start() {
    try {
       await mongoose.connect(
-         'mongodb+srv://viks:viks2332@cluster0-qldgg.mongodb.net/workouts',
+         'mongodb+srv://viks:viks2332@cluster0-qldgg.mongodb.net/training-diary-db',
+         /*'mongodb://localhost/training-diary-db',*/
          {
             useNewUrlParser: true,
             useFindAndModify: false,
