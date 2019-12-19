@@ -1,29 +1,18 @@
-import React, {useState, useEffect}      from 'react';
+import React, {useEffect}      from 'react';
 import {connect, Provider}               from "react-redux";
-import {AddWorkoutForm}                  from "./AddWorkoutForm/AddWorkoutForm.jsx";
+import {AddWorkoutForm}                  from "./components/AddWorkoutForm/AddWorkoutForm.jsx";
 import {addWorkoutItem, getWorkoutsList} from "./redux/workoutsReducer.js";
 import {store}                           from "./redux/redux-store.js";
 import {compose}                         from "redux";
 
 function App(props) {
-   const [value, setValue] = useState('')
    useEffect(() => {
       props.getWorkoutsList()
    }, []);
 
-  /* const onSubmit = (e) => {
-      e.preventDefault()
-      props.addWorkoutItem(value)
-   }*/
-
    return (
       <div className="App">
          <AddWorkoutForm addWorkoutItem={props.addWorkoutItem}/>
-
-         {/*<form onSubmit={onSubmit}>
-            <input type="text" value={value} onChange={(e) => setValue(e.target.value)}/>
-            <button type="submit">Send</button>
-         </form>*/}
 
          <ul>
             {
@@ -46,7 +35,9 @@ const AppContainer = compose(
    connect(mapStateToProps, {getWorkoutsList, addWorkoutItem}),
 )(App);
 
-const WorkoutApp = (props) => {
+
+
+const WorkoutApp = () => {
    return (
       <Provider store={store}>
          <AppContainer/>
