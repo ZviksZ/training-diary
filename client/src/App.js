@@ -8,7 +8,7 @@ import {addWorkoutItem, getWorkoutsList}        from "./redux/workoutsReducer.js
 import {store}                                  from "./redux/redux-store.js";
 import {compose}                                from "redux";
 
-function App(props) {
+const App = (props) => {
    useEffect(() => {
       props.getWorkoutsList()
    }, []);
@@ -48,8 +48,7 @@ function App(props) {
                   })
                }
             </ul> 
-         }
-         
+         }         
       </div>
    );
 }
