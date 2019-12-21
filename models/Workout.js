@@ -5,6 +5,13 @@ const shema = new Schema({
       type: String,
       required: true
    },
+   workoutType: {
+      type: String,
+      required: true
+   },
+   exercises: {
+      type: Array
+   }
 })
 
 module.exports = model('Workout', shema)

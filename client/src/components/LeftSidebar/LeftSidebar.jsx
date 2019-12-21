@@ -27,16 +27,19 @@ export class LeftSidebar extends React.Component {
                theme="dark"
                inlineCollapsed={this.state.collapsed}
             >
-               <Menu.Item key="1">
-                  <Icon type="pie-chart" />
-                  <span>Option 1</span>
-                  <NavLink></NavLink>
+               <Menu.Item key="1">                  
+                  <NavLink to="/add">
+                     <Icon type="smile" />
+                     <span>Add form</span>
+                  </NavLink>
                </Menu.Item>
-               <Menu.Item key="2">
-                  <Icon type="desktop" />
-                  <span>Option 2</span>
+               <Menu.Item key="2">                  
+                  <NavLink to="/add2">
+                     <Icon type="desktop" />
+                     <span>Workouts</span>
+                  </NavLink>
                </Menu.Item>
-               <Menu.Item key="3">
+              {/* <Menu.Item key="3">
                   <Icon type="inbox" />
                   <span>Option 3</span>
                </Menu.Item>
@@ -69,7 +72,7 @@ export class LeftSidebar extends React.Component {
                      <Menu.Item key="11">Option 11</Menu.Item>
                      <Menu.Item key="12">Option 12</Menu.Item>
                   </SubMenu>
-               </SubMenu>
+               </SubMenu>*/}
             </Menu>
          </div>
       );

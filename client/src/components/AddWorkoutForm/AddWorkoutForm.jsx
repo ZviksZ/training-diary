@@ -1,48 +1,103 @@
-import React                               from 'react'
-import {Formik, Form, Field, ErrorMessage} from 'formik'
-import s                                   from './AddWorkoutForm.module.scss'
-import {Button, Input}                     from 'antd';
-import * as Yup                            from 'yup';
+import React                                           from 'react'
+import {Formik, Form, Field, ErrorMessage, FieldArray} from 'formik'
+import {InputField}                                    from "../common/InputField/InputField.jsx";
+import style                                               from './AddWorkoutForm.module.scss'
+import {Button, Input}                                 from 'antd';
+import {generate}                                      from "shortid";
+import {AddWorkoutSchema}                              from "./addWorkoutFormValidation.js";
 
-const SignupSchema = Yup.object().shape({
-   title: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
-   workoutType: Yup.string().required('Type is required!')
-});
 
-export const AddWorkoutForm = ({addWorkoutItem}) => (
-   <div>
-      <h2>Add new workout</h2>
-      <Formik
-         initialValues={{title: '', workoutType: ''}}
-         validationSchema={SignupSchema}
-         onSubmit={(values, actions) => {
-            addWorkoutItem(values.title)
-
-            setTimeout(() => {
-               actions.resetForm({});
-               actions.setSubmitting(false);
-            }, 1000);
-         }}
-      >
-         {({isSubmitting}) => (
-            <Form>
-               <Field type="text"  name="title" render={({field}) => {
-                  return <Input {...field} onBlur={(e) => e.preventDefault()} style={{width: '30%'}} placeholder="Workout name"/>
-               }}/>
-               <ErrorMessage name="title" component="div" className={s.errorMessage}/>
-
-               <Field component="select" name="workoutType">
-                  <option value="" label="Select workout type" />
-                  <option value="quick">Quick</option>
-                  <option value="strength">Strength</option>
-                  <option value="cardio">Cardio</option>
-               </Field>
-               <ErrorMessage name="workoutType" component="div" className={s.errorMessage}/>
+export const AddWorkoutForm = ({addWorkoutItem}) => {
+   return (
+      <div>
+         <h2>Add new workout</h2>
+         <Formik
+            initialValues={{
+               title: '',
+               workoutType: '',
+               exercises: [{
+                  id: generate(), 
+                  exercise: 'Box', 
+                  rounds: '1', 
+                  repeats: '10'}]
+            }}
+            validationSchema={AddWorkoutSchema}
+            onSubmit={(values, actions) => {
+               addWorkoutItem(values.title, values.workoutType, values.exercises)
                
-               
-               <Button type="primary" htmlType="submit" disabled={isSubmitting}>Send</Button>
-            </Form>
-         )}
-      </Formik>
-   </div>
-);
+               setTimeout(() => {
+                  actions.resetForm({});
+                  actions.setSubmitting(false);
+               }, 1000);
+            }}
+         >
+            {({isSubmitting, values, errors}) => (
+               <Form>
+                  <Field type="text" 
+                         name="title" 
+                         style={{width: '30%'}}
+                         onBlur={(e) => e.preventDefault()}
+                         component={InputField}/>
+
+                  <Field component="select" name="workoutType">
+                     <option value="" label="Select workout type"/>
+                     <option value="quick">Quick</option>
+                     <option value="strength">Strength</option>
+                     <option value="cardio">Cardio</option>
+                  </Field>
+                  <ErrorMessage name="workoutType" component="div" className={style.errorMessage}/>
+
+                  <FieldArray name="exercises">
+                     {({push, remove}) => (
+                        <div>
+                           {values.exercises.map((p, index) => {
+                              return (
+                                 <div key={p.id}>
+                                    <h3>Exercise</h3>
+                                    <Field
+                                       name={`exercises[${index}].exercise`}
+                                       type="text"
+                                       component={InputField}
+                                    />
+                                    <Field
+                                       name={`exercises[${index}].rounds`}
+                                       type="number"
+                                       className={style.numberField}
+                                       component={InputField}
+                                    />
+                                    <Field
+                                       name={`exercises[${index}].repeats`}
+                                       type="number"
+                                       className={style.numberField}
+                                       component={InputField}
+                                    />
+                                    {
+                                       index > 0 && <div onClick={() => remove(index)}> DELETE </div>
+                                    }
+
+                                 </div>
+                              );
+                           })}
+                           <Button
+                              type="primary"
+                              onClick={() =>
+                                 push({id: generate(), exercise: "", rounds: "", repeats: ""})
+                              }
+                           >
+                              add to list
+                           </Button>
+                        </div>
+                     )}
+                  </FieldArray>
+
+                  <pre>{JSON.stringify(values, null, 2)}</pre>
+                  <pre>{JSON.stringify(errors, null, 2)}</pre>
+
+                  <Button type="primary" htmlType="submit" disabled={isSubmitting}>Send</Button>
+
+               </Form>
+            )}
+         </Formik>
+      </div>
+   )
+}

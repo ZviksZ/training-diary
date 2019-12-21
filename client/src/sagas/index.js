@@ -1,15 +1,18 @@
-import {put, takeLatest, all, call}      from 'redux-saga/effects';
-import {setWorkoutItem, setWorkoutsList} from "../redux/workoutsReducer.js";
-import * as axios                        from "axios";
+import {put, takeLatest, all, call}                 from 'redux-saga/effects';
+import {isLoading, setWorkoutItem, setWorkoutsList} from "../redux/workoutsReducer.js";
+import * as axios                                   from "axios";
 
 const instance = axios.create({
    baseURL: 'http://localhost:8080/',
 })
 
 function* fetchSaga() {
+   yield put(isLoading(true))
    try {
       const response = yield call(instance.get, `workouts`);
+      console.log(response)
       if (response.statusText === 'OK') {
+         yield put(isLoading(false))
          yield put(setWorkoutsList(response.data))
       }
    } catch (e) {
@@ -18,9 +21,15 @@ function* fetchSaga() {
 }
 
 function* postWorkoutSaga(action) {
+   yield put(isLoading(true))
    try {
-      const response = yield call(instance.post, `workouts`, {title: action.title});
+      const response = yield call(instance.post, `workouts`, {
+         title: action.title,
+         workoutType: action.workoutType,
+         exercises: action.exercises
+      });
       if (response.statusText === 'OK') {
+         yield put(isLoading(false))
          yield put(setWorkoutItem(response.data))
       }
      
