@@ -8,7 +8,7 @@ import {addWorkoutItem, getWorkoutsList}        from "./redux/workoutsReducer.js
 import {store}                                  from "./redux/redux-store.js";
 import {compose}                                from "redux";
 
-const App = (props) => {
+const App = props => {
    useEffect(() => {
       props.getWorkoutsList()
    }, []);

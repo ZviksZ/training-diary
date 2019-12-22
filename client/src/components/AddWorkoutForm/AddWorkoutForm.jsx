@@ -35,8 +35,7 @@ export const AddWorkoutForm = ({addWorkoutItem}) => {
                <Form>
                   <Field type="text" 
                          name="title" 
-                         style={{width: '30%'}}
-                         onBlur={(e) => e.preventDefault()}
+                         style={{width: '30%'}}                         
                          component={InputField}/>
 
                   <Field component="select" name="workoutType">
