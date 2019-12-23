@@ -1,0 +1,31 @@
+.App {
+    display: grid;    
+    position: relative;
+}
+.app-wrapper-content {
+    width: 100%;
+    background: #333;
+    color: #fff;
+    height: 100vh;
+    .container {
+        max-width: 1170px;
+        margin: 0 auto;
+    }
+}
+.left-sidebar {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.ant-menu.ant-menu-dark .ant-menu-item-selected, 
+.ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected,
+.ant-btn-primary,
+.ant-btn-primary:focus,
+.ant-btn-primary:hover{
+    background-color: #ff9400;
+}
+.ant-btn-primary,
+.ant-btn-primary:focus,
+.ant-btn-primary:hover{
+    border-color: #ff9400;
+}

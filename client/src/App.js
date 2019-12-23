@@ -4,9 +4,11 @@ import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import {AddWorkoutForm}                         from "./components/AddWorkoutForm/AddWorkoutForm.jsx";
 import {Loader}                                 from "./components/common/Loader/Loader.jsx";
 import {LeftSidebar}                            from "./components/LeftSidebar/LeftSidebar.jsx";
+import {WorkoutsList}                           from "./components/WorkoutsList/WorkoutsList.jsx";
 import {addWorkoutItem, getWorkoutsList}        from "./redux/workoutsReducer.js";
 import {store}                                  from "./redux/redux-store.js";
 import {compose}                                from "redux";
+
 
 const App = props => {
    useEffect(() => {
@@ -15,40 +17,26 @@ const App = props => {
 
    return (
       <div className="App">
-         <LeftSidebar/>
          
-         <Switch>
-            <Route exact path="/"
-                   render={() => <Redirect from='/' to='/add'/>}/>
-            <Route path="/add" render={() =>  <AddWorkoutForm addWorkoutItem={props.addWorkoutItem}/>}/>
-            <Route path="/add2" render={() =>  <div>add2</div>}/>
+         <LeftSidebar/>
+         <div className="app-wrapper-content">
+            <div className="container">
+               <Switch>
+                  <Route exact path="/"
+                         render={() => <Redirect from='/' to='/add'/>}/>
+                  <Route path="/add" render={() =>  <AddWorkoutForm addWorkoutItem={props.addWorkoutItem}/>}/>
 
-            <Route render={() => <div>404 not found</div>}/>
-         </Switch>
+                  <Route path="/list" render={() =>  <WorkoutsList workoutsList={props.workoutsList}/>}/>
+
+                  <Route render={() => <div>404 not found</div>}/>
+               </Switch>
+            </div>            
+         </div>
+         
         
-         {
-            props.isLoading ? <Loader/> : <ul>
-               {
-                  props.workoutsList.map(item => {
-                     return <li>
-                        {item.title} <br/>
-                        {item.workoutType} <br/>
-                        <ul>
-                           {
-                              item.exercises.map(e => <li>
-                                 {e.id} <br/>
-                                 {e.exercise} <br/>
-                                 {e.rounds} <br/>
-                                 {e.repeats}
-                              </li>)
-                           }
-                        </ul>
-
-                     </li>
-                  })
-               }
-            </ul> 
-         }         
+        {/* {
+            props.isLoading ? <Loader/> : <WorkoutsList workoutsList={props.workoutsList}/>
+         } */}        
       </div>
    );
 }

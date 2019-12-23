@@ -11,9 +11,9 @@ export const LeftSidebar = () => {
    };
 
    return (
-      <div style={{width: 256}}>
+      <div style={{width: 256}} className="left-sidebar">
          <Button type="primary" onClick={toggleCollapsed} style={{marginBottom: 16}}>
-            <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'}/>
+            <Icon type={collapsed ? 'menu-unfold' : 'close-circle'}/>
          </Button>
          <Menu
             defaultSelectedKeys={['1']}
@@ -29,7 +29,7 @@ export const LeftSidebar = () => {
                </NavLink>
             </Menu.Item>
             <Menu.Item key="2">
-               <NavLink to="/add2">
+               <NavLink to="/list">
                   <Icon type="desktop"/>
                   <span>Workouts</span>
                </NavLink>
