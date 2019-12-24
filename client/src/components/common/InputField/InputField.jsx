@@ -8,12 +8,12 @@ export const InputField = ({field, form: {errors}, ...props}) => {
    const errorMessage = getIn(errors, field.name);
 
    return (
-      <>
+      <div className={style.inputFieldWrap}>
          <Input {...field}
                 {...props}
                 onBlur={(e) => e.preventDefault()}
                 className={cn({[style.errorInput]: errorMessage}, props.className)}/>
-         {errorMessage && <div style={{color: "red"}}>{errorMessage}</div>}
-      </>
+         {errorMessage && <div className={style.errorMessage} style={{color: "red"}}>{errorMessage}</div>}
+      </div>
    );
 };

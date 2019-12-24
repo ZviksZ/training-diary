@@ -11,27 +11,43 @@ export const LeftSidebar = () => {
    };
 
    return (
-      <div style={{width: 256}} className="left-sidebar">
+      <div style={{width: 240}} className="left-sidebar">
          <Button type="primary" onClick={toggleCollapsed} style={{marginBottom: 16}}>
-            <Icon type={collapsed ? 'menu-unfold' : 'close-circle'}/>
+            <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'}/>
          </Button>
-         <Menu
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
+         <Menu            
             mode="inline"
             theme="dark"
             inlineCollapsed={collapsed}
          >
             <Menu.Item key="1">
-               <NavLink to="/add">
+               <NavLink to="/add" activeClassName='activeMenuLink'>
                   <Icon type="smile"/>
                   <span>Add form</span>
                </NavLink>
             </Menu.Item>
             <Menu.Item key="2">
-               <NavLink to="/list">
-                  <Icon type="desktop"/>
+               <NavLink to="/list" activeClassName='activeMenuLink'>
+                  <Icon type="schedule"/>
                   <span>Workouts</span>
+               </NavLink>
+            </Menu.Item>
+            <Menu.Item key="3">
+               <NavLink to="/active" activeClassName='activeMenuLink'>
+                  <Icon type="rocket"/>
+                  <span>Active training</span>
+               </NavLink>
+            </Menu.Item>
+            <Menu.Item key="4">
+               <NavLink to="/history" activeClassName='activeMenuLink'>
+                  <Icon type="clock-circle"/>
+                  <span>Your history</span>
+               </NavLink>
+            </Menu.Item>
+            <Menu.Item key="5">
+               <NavLink to="/settings" activeClassName='activeMenuLink'>
+                  <Icon type="setting" theme="filled"/>
+                  <span>Settings</span>
                </NavLink>
             </Menu.Item>
             {/* <Menu.Item key="3">

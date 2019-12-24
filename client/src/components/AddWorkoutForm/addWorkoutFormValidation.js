@@ -5,7 +5,7 @@ export const AddWorkoutSchema = Yup.object().shape({
    workoutType: Yup.string().required('Type is required!'),
    exercises: Yup.array().of(
       Yup.object().shape({
-         exercise: Yup.string().max(10).required('Name is required!'),
+         exercise: Yup.string().min(2).max(10),
          rounds: Yup.number().min(1),
          repeats: Yup.number().min(1)
       })

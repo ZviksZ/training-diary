@@ -7,7 +7,7 @@ export const WorkoutsList = ({workoutsList}) => {
       <ul className={style.workoutsList}>
          {
             workoutsList.map(item => {
-               return <WorkoutsListItem item={item}/>
+               return <WorkoutsListItem key={item._id} item={item}/>
             })
          }
       </ul>

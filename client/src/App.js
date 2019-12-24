@@ -27,12 +27,17 @@ const App = props => {
                   <Route path="/add" render={() =>  <AddWorkoutForm addWorkoutItem={props.addWorkoutItem}/>}/>
 
                   <Route path="/list" render={() =>  <WorkoutsList workoutsList={props.workoutsList}/>}/>
+                  
+                  
+                  <Route path="/active" render={() =>  <div><h1>active train + timer(on all pages btn) + free filds for extension exercises</h1></div>}/>
+                  <Route path="/history" render={() =>  <div><h1>history of trainings with time + btn-"train again"</h1></div>}/>
+                  <Route path="/settings" render={() =>  <div><h1>settings</h1></div>}/>
 
                   <Route render={() => <div>404 not found</div>}/>
-               </Switch>
+               </Switch>               
             </div>            
          </div>
-         
+         <div className="timer">TIMER</div>
         
         {/* {
             props.isLoading ? <Loader/> : <WorkoutsList workoutsList={props.workoutsList}/>

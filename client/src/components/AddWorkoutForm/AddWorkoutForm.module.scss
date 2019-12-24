@@ -1,7 +1,20 @@
-.errorMessage {
-    color: red
- }
-.numberField{
-    width: 10% !important;
-    margin-right: 15px;
+.addFormContainer {
+    padding: 25px;
+    .errorMessage {
+        color: red
+    }
+    .numberField {
+        width: 10% !important;
+        margin-right: 15px;
+    }
+    .addFormTitle,
+    .addFormSubtitle {
+        color: #ffffff;
+    }
+    select {
+        color: #333;
+    }
 }
+
+
+
