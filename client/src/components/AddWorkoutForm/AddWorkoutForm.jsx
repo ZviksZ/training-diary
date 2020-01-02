@@ -36,6 +36,7 @@ export const AddWorkoutForm = ({addWorkoutItem}) => {
                <Form>
                   <Field type="text"
                          name="title"
+                         placeholder="Enter workout name"
                          style={{width: '30%'}}
                          component={InputField}/>
 

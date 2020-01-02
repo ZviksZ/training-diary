@@ -32,12 +32,13 @@ const App = props => {
                   <Route path="/active" render={() =>  <div><h1>active train + timer(on all pages btn) + free filds for extension exercises</h1></div>}/>
                   <Route path="/history" render={() =>  <div><h1>history of trainings with time + btn-"train again"</h1></div>}/>
                   <Route path="/settings" render={() =>  <div><h1>settings</h1></div>}/>
+                  <Route path="/timer" render={() => <div className="timer">TIMER</div>}/>
 
                   <Route render={() => <div>404 not found</div>}/>
                </Switch>               
             </div>            
          </div>
-         <div className="timer">TIMER</div>
+         
         
         {/* {
             props.isLoading ? <Loader/> : <WorkoutsList workoutsList={props.workoutsList}/>

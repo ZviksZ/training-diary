@@ -3,9 +3,9 @@ import style from '../WorkoutsList.module.scss'
 
 export const WorkoutsListItem = ({item}) => {
    return (
-      <li>
-         {item.title} <br/>
-         {item.workoutType} <br/>
+      <li className={style.item}>
+         <h3>{item.title} </h3>
+         <p>Workout type: <strong>{item.workoutType}</strong></p>
          <ul>
             {
                item.exercises.map(e => <li>

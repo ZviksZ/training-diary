@@ -27,24 +27,30 @@ export const LeftSidebar = () => {
                </NavLink>
             </Menu.Item>
             <Menu.Item key="2">
+               <NavLink to="/timer" activeClassName='activeMenuLink'>
+                  <Icon type="schedule"/>
+                  <span>Timer</span>
+               </NavLink>
+            </Menu.Item>
+            <Menu.Item key="3">
                <NavLink to="/list" activeClassName='activeMenuLink'>
                   <Icon type="schedule"/>
                   <span>Workouts</span>
                </NavLink>
             </Menu.Item>
-            <Menu.Item key="3">
+            <Menu.Item key="4">
                <NavLink to="/active" activeClassName='activeMenuLink'>
                   <Icon type="rocket"/>
                   <span>Active training</span>
                </NavLink>
             </Menu.Item>
-            <Menu.Item key="4">
+            <Menu.Item key="5">
                <NavLink to="/history" activeClassName='activeMenuLink'>
                   <Icon type="clock-circle"/>
                   <span>Your history</span>
                </NavLink>
             </Menu.Item>
-            <Menu.Item key="5">
+            <Menu.Item key="6">
                <NavLink to="/settings" activeClassName='activeMenuLink'>
                   <Icon type="setting" theme="filled"/>
                   <span>Settings</span>
