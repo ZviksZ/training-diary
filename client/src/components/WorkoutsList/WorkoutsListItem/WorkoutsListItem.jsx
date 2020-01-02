@@ -1,7 +1,11 @@
 import React from 'react'
 import style from '../WorkoutsList.module.scss'
 
-export const WorkoutsListItem = ({item}) => {
+export const WorkoutsListItem = ({item, setActiveWorkout}) => {
+   const chooseActive = () => {
+      setActiveWorkout(item)
+   }
+   
    return (
       <li className={style.item}>
          <h3>{item.title} </h3>
@@ -16,7 +20,9 @@ export const WorkoutsListItem = ({item}) => {
                </li>)
             }
          </ul>
-
+         <button onClick={chooseActive}>
+            Train now
+         </button>
       </li>
    )
 }

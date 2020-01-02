@@ -5,6 +5,7 @@ import {AddWorkoutForm}                         from "./components/AddWorkoutFor
 import {Loader}                                 from "./components/common/Loader/Loader.jsx";
 import {LeftSidebar}                            from "./components/LeftSidebar/LeftSidebar.jsx";
 import {WorkoutsList}                           from "./components/WorkoutsList/WorkoutsList.jsx";
+import {setActiveWorkout}                       from "./redux/activeTrainReducer.js";
 import {addWorkoutItem, getWorkoutsList}        from "./redux/workoutsReducer.js";
 import {store}                                  from "./redux/redux-store.js";
 import {compose}                                from "redux";
@@ -26,10 +27,10 @@ const App = props => {
                          render={() => <Redirect from='/' to='/add'/>}/>
                   <Route path="/add" render={() =>  <AddWorkoutForm addWorkoutItem={props.addWorkoutItem}/>}/>
 
-                  <Route path="/list" render={() =>  <WorkoutsList workoutsList={props.workoutsList}/>}/>
+                  <Route path="/list" render={() =>  <WorkoutsList setActiveWorkout={props.setActiveWorkout} workoutsList={props.workoutsList}/>}/>
                   
                   
-                  <Route path="/active" render={() =>  <div><h1>active train + timer(on all pages btn) + free filds for extension exercises</h1></div>}/>
+                  <Route path="/active" render={() =>  <div>{props.activeTrain.title}</div>}/>
                   <Route path="/history" render={() =>  <div><h1>history of trainings with time + btn-"train again"</h1></div>}/>
                   <Route path="/settings" render={() =>  <div><h1>settings</h1></div>}/>
                   <Route path="/timer" render={() => <div className="timer">TIMER</div>}/>
@@ -51,11 +52,12 @@ let mapStateToProps = (state) => {
    return {
       workoutsList: state.workouts.workoutsList,
       isLoading: state.workouts.isLoading,
+      activeTrain: state.active.activeTrain,
    }
 }
 
 const AppContainer = compose(
-   connect(mapStateToProps, {getWorkoutsList, addWorkoutItem}),
+   connect(mapStateToProps, {getWorkoutsList, addWorkoutItem, setActiveWorkout}),
 )(App);
 
 

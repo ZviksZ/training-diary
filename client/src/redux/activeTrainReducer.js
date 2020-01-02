@@ -20,10 +20,10 @@ const activeTrainReducer = (state = initialState, action) => {
 }
 
 //simple action creator
-export const setWorkoutsList = (activeTrain) => ({type: SET_ACTIVE, activeTrain})
+export const setActiveWorkout = (activeTrain) => ({type: SET_ACTIVE, activeTrain})
 
 //saga action creator
-export const addWorkoutItem = (title, workoutType, exercises) => ({type: ADD_WORKOUT_ITEM, title, workoutType, exercises});
+/*export const setActiveWorkout = (workout) => ({type: ADD_WORKOUT_ITEM, title, workoutType, exercises});*/
 
 
 export default activeTrainReducer
