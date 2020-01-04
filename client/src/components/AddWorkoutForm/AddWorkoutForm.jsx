@@ -37,10 +37,10 @@ export const AddWorkoutForm = ({addWorkoutItem}) => {
                   <Field type="text"
                          name="title"
                          placeholder="Enter workout name"
-                         style={{width: '30%'}}
+                         className={style.textField}
                          component={InputField}/>
 
-                  <Field component="select" name="workoutType">
+                  <Field component="select" name="workoutType" className={style.selectField}>
                      <option value="" label="Select workout type"/>
                      <option value="quick">Quick</option>
                      <option value="strength">Strength</option>
@@ -51,30 +51,30 @@ export const AddWorkoutForm = ({addWorkoutItem}) => {
 
                   <FieldArray name="exercises">
                      {({push, remove}) => (
-                        <div>
+                        <div className={style.exercisesWrap}>
                            {values.exercises.map((p, index) => {
                               return (
-                                 <div key={p.id}>
+                                 <div key={p.id} className={style.exercise}>
                                     <h3 className={style.addFormSubtitle}>Exercise</h3>
                                     <Field
                                        name={`exercises[${index}].exercise`}
                                        type="text"
                                        component={InputField}
                                     />
+                                    <span>Rounds</span>
                                     <Field
                                        name={`exercises[${index}].rounds`}
                                        type="number"
-                                       className={style.numberField}
                                        component={InputField}
                                     />
+                                    <span>Repeats</span>
                                     <Field
                                        name={`exercises[${index}].repeats`}
                                        type="number"
-                                       className={style.numberField}
                                        component={InputField}
                                     />
                                     {
-                                       index > 0 && <div onClick={() => remove(index)}> DELETE </div>
+                                       index > 0 && <div onClick={() => remove(index)} className={style.deleteBtn}> DELETE </div>
                                     }
 
                                  </div>

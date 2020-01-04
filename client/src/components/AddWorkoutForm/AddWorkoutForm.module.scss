@@ -1,11 +1,13 @@
 .addFormContainer {
     padding: 25px;
+    .textField {
+        width: 30% !important;
+    }
+    .selectField {
+        width: 30%;
+    }
     .errorMessage {
         color: red
-    }
-    .numberField {
-        width: 10% !important;
-        margin-right: 15px;
     }
     .addFormTitle,
     .addFormSubtitle {
@@ -13,6 +15,20 @@
     }
     select {
         color: #333;
+    }
+    .exercisesWrap {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        width: 100%;
+        .exercise {
+            width: 15% !important;
+            margin-right: 15px;
+            margin-bottom: 20px;
+        }
+    }
+    .deleteBtn {
+        cursor: pointer;
     }
 }
 
