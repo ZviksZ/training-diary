@@ -18,6 +18,13 @@ workout.post('/workouts', async (req, res) => {
    await res.send(workout)
 })
 
+workout.delete("/workouts/:id", async (req, res)=>{
+   const message = await Workout
+      .findByIdAndRemove(req.params.id)
+      .then(() => 'Workout deleted');
+
+   res.json({ message });
+});
 
 /*router.put("/muggers/:id", (req, res)=>{
    Mugger.findByIdAndUpdate({_id: req.params.id}, req.body)
@@ -26,13 +33,6 @@ workout.post('/workouts', async (req, res) => {
             .then(mugger => {
                res.send(mugger);
             });
-      });
-});
-
-router.delete("/muggers/:id", (req, res)=>{
-   Mugger.deleteOne({_id: req.params.id})
-      .then(mugger => {
-         res.send(mugger);
       });
 });*/
 

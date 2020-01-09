@@ -1,6 +1,6 @@
-import {put, takeLatest, all, call}                 from 'redux-saga/effects';
-import {isLoading, setWorkoutItem, setWorkoutsList} from "../redux/workoutsReducer.js";
-import * as axios                                   from "axios";
+import {put, takeLatest, all, call}                                    from 'redux-saga/effects';
+import {deleteWorkoutItem, isLoading, setWorkoutItem, setWorkoutsList} from "../redux/workoutsReducer.js";
+import * as axios                                                      from "axios";
 
 const instance = axios.create({
    baseURL: 'http://localhost:8080/',
@@ -38,10 +38,23 @@ function* postWorkoutSaga(action) {
    }
 }
 
+function* deleteWorkoutSaga(action) {
+   try {
+      const response = yield call(instance.delete, `workouts/${action.itemId}`);
+      
+      if (response.statusText === 'OK') {
+         yield put(deleteWorkoutItem(action.itemId))
+      }     
+   } catch (e) {
+      alert('Загрузка не удалась')
+   }
+}
+
 
 
 
 export default function* rootSaga() {
    yield takeLatest('training-diary/workouts-reducer/GET_WORKOUTS', fetchSaga)
    yield takeLatest('training-diary/workouts-reducer/ADD_WORKOUT_ITEM', postWorkoutSaga)
+   yield takeLatest('training-diary/workouts-reducer/DELETE_WORKOUT_ITEM', deleteWorkoutSaga)
 }

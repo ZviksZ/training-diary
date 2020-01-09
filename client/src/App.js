@@ -1,15 +1,15 @@
 import React, {useEffect}                       from 'react';
 import {connect, Provider}                      from "react-redux";
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
-import {AddWorkoutForm}                         from "./components/AddWorkoutForm/AddWorkoutForm.jsx";
-import {Loader}                                 from "./components/common/Loader/Loader.jsx";
-import {Timer}                                  from "./components/common/Timer/Timer.jsx";
-import {LeftSidebar}                            from "./components/LeftSidebar/LeftSidebar.jsx";
-import {WorkoutsList}                           from "./components/WorkoutsList/WorkoutsList.jsx";
-import {setActiveWorkout}                       from "./redux/activeTrainReducer.js";
-import {addWorkoutItem, getWorkoutsList}        from "./redux/workoutsReducer.js";
-import {store}                                  from "./redux/redux-store.js";
-import {compose}                                from "redux";
+import {AddWorkoutForm}                                 from "./components/AddWorkoutForm/AddWorkoutForm.jsx";
+import {Loader}                                         from "./components/common/Loader/Loader.jsx";
+import {Timer}                                          from "./components/common/Timer/Timer.jsx";
+import {LeftSidebar}                                    from "./components/LeftSidebar/LeftSidebar.jsx";
+import {WorkoutsList}                                   from "./components/WorkoutsList/WorkoutsList.jsx";
+import {setActiveWorkout}                               from "./redux/activeTrainReducer.js";
+import {addWorkoutItem, deleteWorkout, getWorkoutsList} from "./redux/workoutsReducer.js";
+import {store}                                          from "./redux/redux-store.js";
+import {compose}                                        from "redux";
 
 
 const App = props => {
@@ -28,7 +28,9 @@ const App = props => {
                          render={() => <Redirect from='/' to='/add'/>}/>
                   <Route path="/add" render={() =>  <AddWorkoutForm addWorkoutItem={props.addWorkoutItem}/>}/>
 
-                  <Route path="/list" render={() =>  <WorkoutsList setActiveWorkout={props.setActiveWorkout} workoutsList={props.workoutsList}/>}/>
+                  <Route path="/list" render={() =>  <WorkoutsList setActiveWorkout={props.setActiveWorkout}
+                                                                   deleteWorkout={props.deleteWorkout}
+                                                                   workoutsList={props.workoutsList}/>}/>
                   
                   
                   <Route path="/active" render={() =>  <div>{props.activeTrain.title}</div>}/>
@@ -58,7 +60,7 @@ let mapStateToProps = (state) => {
 }
 
 const AppContainer = compose(
-   connect(mapStateToProps, {getWorkoutsList, addWorkoutItem, setActiveWorkout}),
+   connect(mapStateToProps, {getWorkoutsList, addWorkoutItem, setActiveWorkout, deleteWorkout}),
 )(App);
 
 

@@ -1,11 +1,12 @@
 .workoutsList {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     .item {
-        width: 24%;
+        width: 25%;
         margin-bottom: 2rem;
         list-style: none;
+        padding: 5px;
         h3 {
             color: #ffffff;
             font-size: 22px;
