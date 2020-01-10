@@ -2,6 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    button {
+        color: #333333;
+        background: #fff;
+        border: 0; 
+        cursor: pointer;
+    }
     .item {
         width: 25%;
         margin-bottom: 2rem;

@@ -31,6 +31,8 @@ export const AddWorkoutForm = ({addWorkoutItem}) => {
                   actions.setSubmitting(false);
                }, 1000);
             }}
+            validateOnChange={false} 
+            validateOnBlur={false}
          >
             {({isSubmitting, values, errors}) => (
                <Form>
@@ -38,6 +40,9 @@ export const AddWorkoutForm = ({addWorkoutItem}) => {
                          name="title"
                          placeholder="Enter workout name"
                          className={style.textField}
+                         handleBlur={e => {
+                            e.preventDefault()
+                         }}
                          component={InputField}/>
 
                   <Field component="select" name="workoutType" className={style.selectField}>
@@ -81,6 +86,7 @@ export const AddWorkoutForm = ({addWorkoutItem}) => {
                               );
                            })}
                            <Button
+                              className={style.addExerciseBtn}
                               type="primary"
                               onClick={() =>
                                  push({id: generate(), exercise: "", rounds: "", repeats: ""})
@@ -92,8 +98,8 @@ export const AddWorkoutForm = ({addWorkoutItem}) => {
                      )}
                   </FieldArray>
 
-                  <pre>{JSON.stringify(values, null, 2)}</pre>
-                  <pre>{JSON.stringify(errors, null, 2)}</pre>
+                  {/*<pre>{JSON.stringify(values, null, 2)}</pre>
+                  <pre>{JSON.stringify(errors, null, 2)}</pre>*/}
 
                   <Button type="primary" htmlType="submit" disabled={isSubmitting}>Send</Button>
 

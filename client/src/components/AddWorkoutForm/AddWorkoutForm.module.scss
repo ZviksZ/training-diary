@@ -7,7 +7,9 @@
         width: 30%;
     }
     .errorMessage {
-        color: red
+        color: red;
+        display: inline-block;
+        margin-left: 20px;
     }
     .addFormTitle,
     .addFormSubtitle {
@@ -21,15 +23,33 @@
         justify-content: flex-start;
         flex-wrap: wrap;
         width: 100%;
+        position: relative;
+        padding-top: 60px;
         .exercise {
             width: 15% !important;
             margin-right: 15px;
             margin-bottom: 20px;
+            position: relative;
+        }
+        .addExerciseBtn {
+            position: absolute;
+            left: 0;
+            top: 0;
+            margin-top: 15px;
+        }
+        .deleteBtn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: inline-block;
+            cursor: pointer;
+            background: #fff;
+            padding: 3px 6px;
+            color: #333333;
         }
     }
-    .deleteBtn {
-        cursor: pointer;
-    }
+    
+    
 }
 
 
