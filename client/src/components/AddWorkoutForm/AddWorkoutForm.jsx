@@ -2,7 +2,7 @@ import React                                           from 'react'
 import {Formik, Form, Field, ErrorMessage, FieldArray} from 'formik'
 import {InputField}                                    from "../common/InputField/InputField.jsx";
 import style                                           from './AddWorkoutForm.module.scss'
-import {Button, Input}                                 from 'antd';
+import {Button}                                        from 'antd';
 import {generate}                                      from "shortid";
 import {AddWorkoutSchema}                              from "./addWorkoutFormValidation.js";
 
@@ -46,7 +46,7 @@ export const AddWorkoutForm = ({addWorkoutItem}) => {
                      <option value="strength">Strength</option>
                      <option value="cardio">Cardio</option>
                   </Field>
-                  
+
                   <ErrorMessage name="workoutType" component="div" className={style.errorMessage}/>
 
                   <FieldArray name="exercises">

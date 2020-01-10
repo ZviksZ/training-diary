@@ -2,7 +2,7 @@ import React, {useState}    from 'react'
 import {NavLink}            from 'react-router-dom'
 import {Menu, Icon, Button} from 'antd';
 
-const {SubMenu} = Menu;
+/*const {SubMenu} = Menu;*/
 
 export const LeftSidebar = () => {
    const [collapsed, setCollapsed] = useState(false)

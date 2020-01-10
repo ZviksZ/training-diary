@@ -12,7 +12,7 @@ export const WorkoutsListItem = ({item, setActiveWorkout, deleteWorkout}) => {
          <p>Workout type: <strong>{item.workoutType}</strong></p>
          <ul>
             {
-               item.exercises.map(e => <li>
+               item.exercises.map((e, i) => <li key={i}>
                   {e.id} <br/>
                   {e.exercise} <br/>
                   {e.rounds} <br/>
