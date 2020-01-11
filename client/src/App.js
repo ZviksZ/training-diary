@@ -1,11 +1,12 @@
-import React, {useEffect}                               from 'react';
-import {connect, Provider}                              from "react-redux";
-import {BrowserRouter, Redirect, Route, Switch}         from "react-router-dom";
-import {AddWorkoutForm}                                 from "./components/AddWorkoutForm/AddWorkoutForm.jsx";
-import {Timer}                                          from "./components/common/Timer/Timer.jsx";
-import {LeftSidebar}                                    from "./components/LeftSidebar/LeftSidebar.jsx";
-import {WorkoutsList}                                   from "./components/WorkoutsList/WorkoutsList.jsx";
-import {setActiveWorkout}                               from "./redux/activeTrainReducer.js";
+import React, {useEffect}                       from 'react';
+import {connect, Provider}                      from "react-redux";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import {ActiveTraining}                         from "./components/ActiveTraining/ActiveTraining.jsx";
+import {AddWorkoutForm}                         from "./components/AddWorkoutForm/AddWorkoutForm.jsx";
+import {Timer}                                  from "./components/common/Timer/Timer.jsx";
+import {LeftSidebar}                            from "./components/LeftSidebar/LeftSidebar.jsx";
+import {WorkoutsList}                           from "./components/WorkoutsList/WorkoutsList.jsx";
+import {setActiveWorkout}                       from "./redux/activeTrainReducer.js";
 import {addWorkoutItem, deleteWorkout, getWorkoutsList} from "./redux/workoutsReducer.js";
 import {store}                                          from "./redux/redux-store.js";
 import {compose}                                        from "redux";
@@ -33,7 +34,7 @@ const App = props => {
                                                                   workoutsList={props.workoutsList}/>}/>
 
 
-                  <Route path="/active" render={() => <div>{props.activeTrain.title}</div>}/>
+                  <Route path="/active" render={() => <ActiveTraining workout={props.activeTrain}/>}/>
                   <Route path="/history" render={() => <div><h1>history of trainings with time + btn-"train again"</h1></div>}/>
                   <Route path="/settings" render={() => <div><h1>settings</h1></div>}/>
                   <Route path="/timer" render={() => <Timer/>}/>
